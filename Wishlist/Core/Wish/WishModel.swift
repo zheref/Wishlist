@@ -23,6 +23,16 @@ class WishModel {
         self.name = name
     }
     
+    init(withName name: String, longDescription: String, imageResourceName: String,
+                  price: NSDecimalNumber, deadline: NSDate, level: Int) {
+        self.name = name
+        self.longDescription = longDescription
+        self.imageResourceName = imageResourceName
+        self.price = price
+        self.deadline = deadline
+        self.level = level
+    }
+    
     init(withManaged managed: Wish) {
         name = managed.name!
         longDescription = managed.longDescription

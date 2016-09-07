@@ -1,0 +1,96 @@
+//
+//  Memcache.swift
+//  Wishlist
+//
+//  Created by Sergio Daniel Lozano on 9/7/16.
+//  Copyright © 2016 zheref. All rights reserved.
+//
+
+import Foundation
+
+
+internal protocol MemcacheObserver
+{
+    
+    func memcacheHasChanged(forKey key: String) -> Void
+    
+}
+
+
+internal class Memcache {
+    
+    private typealias MemcacheCollection = [String: ([AnyObject], MemcacheObserver?)]
+    
+    // SINGLETON ----------------------------------------------------------------------------------
+    
+    /**
+     * Unique Memcache singleton reference (lazy-loaded)
+     */
+    private static var _instance: Memcache = {
+        return Memcache()
+    }()
+    
+    /**
+     * Unique Memcache singleton accesor
+     */
+    internal static var shared: Memcache {
+        get { return Memcache._instance }
+    }
+    
+    // PROPERTIES ---------------------------------------------------------------------------------
+    
+    private var _data: MemcacheCollection
+    
+    // INITIALIZERS -------------------------------------------------------------------------------
+    
+    init() {
+        _data = MemcacheCollection()
+    }
+    
+    // SUBSCRIPT ----------------------------------------------------------------------------------
+    
+    internal subscript(cacheKey: String) -> [AnyObject]? {
+        get {
+            if let obj = _data[cacheKey] {
+                return obj.0
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    // METHODS ------------------------------------------------------------------------------------
+    
+    /**
+     * Caches a given object with the given key. If it's already there, it updates
+     * - Parameter cacheKey String: Key with what the data will be cached
+     * - Parameter dataItem [AnyObject]:
+     */
+    internal func addOrUpdateKey(cacheKey: String, withData dataItem: [AnyObject],
+                                 beingWatchedBy dataObserver: MemcacheObserver? = nil)
+    {
+        if _data[cacheKey] == nil {
+            _data[cacheKey] = (dataItem, dataObserver)
+        } else {
+            if dataObserver != nil {
+                _data.updateValue((dataItem, dataObserver), forKey: cacheKey)
+                dataObserver!.memcacheHasChanged(forKey: cacheKey)
+            } else {
+                let observer = _data[cacheKey]!.1
+                _data.updateValue((dataItem, observer), forKey: cacheKey)
+                
+                if observer != nil {
+                    observer!.memcacheHasChanged(forKey: cacheKey)
+                }
+            }
+        }
+    }
+    
+    /**
+     * Determines whether a key has been already cached or not
+     */
+    internal func hasKey(cacheKey: String) -> Bool {
+        return _data[cacheKey] != nil
+    }
+    
+}

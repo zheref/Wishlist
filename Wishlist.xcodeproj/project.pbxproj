@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B06CB011D805A350024ADF8 /* BatLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB001D805A350024ADF8 /* BatLog.swift */; };
 		2B06CB031D805E7A0024ADF8 /* Batground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB021D805E7A0024ADF8 /* Batground.swift */; };
+		2B06CB051D807A3D0024ADF8 /* Memcache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB041D807A3D0024ADF8 /* Memcache.swift */; };
+		2B06CB071D807ACD0024ADF8 /* MockedWishesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB061D807ACD0024ADF8 /* MockedWishesDataStore.swift */; };
 		2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */; };
 		2BE9EF001D7F709E00AF9AC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */; };
 		2BE9EF031D7F709E00AF9AC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE9EF011D7F709E00AF9AC2 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		2B06CB001D805A350024ADF8 /* BatLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BatLog.swift; path = Helpers/BatLog.swift; sourceTree = "<group>"; };
 		2B06CB021D805E7A0024ADF8 /* Batground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Batground.swift; path = Helpers/Batground.swift; sourceTree = "<group>"; };
+		2B06CB041D807A3D0024ADF8 /* Memcache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Memcache.swift; path = Helpers/Memcache.swift; sourceTree = "<group>"; };
+		2B06CB061D807ACD0024ADF8 /* MockedWishesDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockedWishesDataStore.swift; path = Core/Wish/DataStores/MockedWishesDataStore.swift; sourceTree = "<group>"; };
 		2BE9EEFA1D7F709E00AF9AC2 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			children = (
 				2B06CB001D805A350024ADF8 /* BatLog.swift */,
 				2B06CB021D805E7A0024ADF8 /* Batground.swift */,
+				2B06CB041D807A3D0024ADF8 /* Memcache.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				2BE9EF3D1D7F888C00AF9AC2 /* CoreDataModel */,
 				2BE9EF3B1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift */,
 				2BE9EF3E1D7F89A000AF9AC2 /* LocalWishesDataStore.swift */,
+				2B06CB061D807ACD0024ADF8 /* MockedWishesDataStore.swift */,
 			);
 			name = DataStores;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B06CB011D805A350024ADF8 /* BatLog.swift in Sources */,
+				2B06CB051D807A3D0024ADF8 /* Memcache.swift in Sources */,
 				2BE9EF381D7F852500AF9AC2 /* Wish+CoreDataProperties.swift in Sources */,
 				2BE9EF061D7F709E00AF9AC2 /* Wishlist.xcdatamodeld in Sources */,
 				2BE9EF3F1D7F89A000AF9AC2 /* LocalWishesDataStore.swift in Sources */,
@@ -331,6 +338,7 @@
 				2BE9EF391D7F852500AF9AC2 /* Wish.swift in Sources */,
 				2B06CB031D805E7A0024ADF8 /* Batground.swift in Sources */,
 				2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */,
+				2B06CB071D807ACD0024ADF8 /* MockedWishesDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

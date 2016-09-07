@@ -17,6 +17,7 @@ enum WishesDataStoreError : ErrorType {
     
     case CouldNotCreateManagedEntityFor(modelName: String)
     case NotPossibleToCastManaged
+    case NotPossibleToCast
     
 }
 
