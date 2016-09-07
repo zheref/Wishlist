@@ -8,10 +8,23 @@
 
 import Foundation
 
+typealias Callback = () -> Void
+typealias ErrorThrower = (ErrorType) -> Void
+typealias WishesReturner = ([WishModel]) -> Void
+
+
+enum WishesDataStoreError : ErrorType {
+    
+    case CouldNotCreateManagedEntityFor(modelName: String)
+    case NotPossibleToCastManaged
+    
+}
+
+
 protocol WishesDataStoreProtocol {
     
-    func insert(withName name: String, longDescription: String?, imageResourceName: String?, imageData: NSData?,
-                         price: NSDecimalNumber?, deadline: NSDate?, level: Int?, andThenDo callback: () -> Void,
-                         orFailWith errorCallback: (ErrorType) -> Void)
+    func insert(model: WishModel, andThenDo callback: Callback, orFailWith thrower: ErrorThrower)
+    
+    func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
     
 }

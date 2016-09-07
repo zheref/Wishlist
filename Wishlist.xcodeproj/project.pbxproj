@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B06CB011D805A350024ADF8 /* BatLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB001D805A350024ADF8 /* BatLog.swift */; };
+		2B06CB031D805E7A0024ADF8 /* Batground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B06CB021D805E7A0024ADF8 /* Batground.swift */; };
 		2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */; };
 		2BE9EF001D7F709E00AF9AC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */; };
 		2BE9EF031D7F709E00AF9AC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE9EF011D7F709E00AF9AC2 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B06CB001D805A350024ADF8 /* BatLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BatLog.swift; path = Helpers/BatLog.swift; sourceTree = "<group>"; };
+		2B06CB021D805E7A0024ADF8 /* Batground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Batground.swift; path = Helpers/Batground.swift; sourceTree = "<group>"; };
 		2BE9EEFA1D7F709E00AF9AC2 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B06CAFF1D8059950024ADF8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2B06CB001D805A350024ADF8 /* BatLog.swift */,
+				2B06CB021D805E7A0024ADF8 /* Batground.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		2BE9EEF11D7F709E00AF9AC2 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +124,7 @@
 			children = (
 				2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */,
 				2BE9EF321D7F748A00AF9AC2 /* Core */,
+				2B06CAFF1D8059950024ADF8 /* Helpers */,
 				2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */,
 				2BE9EF011D7F709E00AF9AC2 /* Main.storyboard */,
 				2BE9EF071D7F709E00AF9AC2 /* Assets.xcassets */,
@@ -307,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B06CB011D805A350024ADF8 /* BatLog.swift in Sources */,
 				2BE9EF381D7F852500AF9AC2 /* Wish+CoreDataProperties.swift in Sources */,
 				2BE9EF061D7F709E00AF9AC2 /* Wishlist.xcdatamodeld in Sources */,
 				2BE9EF3F1D7F89A000AF9AC2 /* LocalWishesDataStore.swift in Sources */,
@@ -314,6 +329,7 @@
 				2BE9EF351D7F759B00AF9AC2 /* WishModel.swift in Sources */,
 				2BE9EF3C1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift in Sources */,
 				2BE9EF391D7F852500AF9AC2 /* Wish.swift in Sources */,
+				2B06CB031D805E7A0024ADF8 /* Batground.swift in Sources */,
 				2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +561,7 @@
 				2BE9EF271D7F709E00AF9AC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2BE9EF281D7F709E00AF9AC2 /* Build configuration list for PBXNativeTarget "WishlistTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +570,7 @@
 				2BE9EF2A1D7F709E00AF9AC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2BE9EF2B1D7F709E00AF9AC2 /* Build configuration list for PBXNativeTarget "WishlistUITests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +579,7 @@
 				2BE9EF2D1D7F709E00AF9AC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

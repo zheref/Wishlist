@@ -23,4 +23,14 @@ class WishModel {
         self.name = name
     }
     
+    init(withManaged managed: Wish) {
+        name = managed.name!
+        longDescription = managed.longDescription
+        imageResourceName = managed.imageResourceName
+        imageData = managed.imageData
+        price = managed.price
+        deadline = managed.deadline
+        level = managed.level
+    }
+    
 }
