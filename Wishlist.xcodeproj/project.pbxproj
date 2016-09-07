@@ -15,6 +15,11 @@
 		2BE9EF0B1D7F709E00AF9AC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE9EF091D7F709E00AF9AC2 /* LaunchScreen.storyboard */; };
 		2BE9EF161D7F709E00AF9AC2 /* WishlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF151D7F709E00AF9AC2 /* WishlistTests.swift */; };
 		2BE9EF211D7F709E00AF9AC2 /* WishlistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF201D7F709E00AF9AC2 /* WishlistUITests.swift */; };
+		2BE9EF351D7F759B00AF9AC2 /* WishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF341D7F759B00AF9AC2 /* WishModel.swift */; };
+		2BE9EF381D7F852500AF9AC2 /* Wish+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF361D7F852500AF9AC2 /* Wish+CoreDataProperties.swift */; };
+		2BE9EF391D7F852500AF9AC2 /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF371D7F852500AF9AC2 /* Wish.swift */; };
+		2BE9EF3C1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF3B1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift */; };
+		2BE9EF3F1D7F89A000AF9AC2 /* LocalWishesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF3E1D7F89A000AF9AC2 /* LocalWishesDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		2BE9EF1C1D7F709E00AF9AC2 /* WishlistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishlistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE9EF201D7F709E00AF9AC2 /* WishlistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistUITests.swift; sourceTree = "<group>"; };
 		2BE9EF221D7F709E00AF9AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BE9EF341D7F759B00AF9AC2 /* WishModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishModel.swift; path = Core/Wish/WishModel.swift; sourceTree = "<group>"; };
+		2BE9EF361D7F852500AF9AC2 /* Wish+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Wish+CoreDataProperties.swift"; path = "Core/Wish/Wish+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2BE9EF371D7F852500AF9AC2 /* Wish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wish.swift; path = Core/Wish/Wish.swift; sourceTree = "<group>"; };
+		2BE9EF3B1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishesDataStoreProtocol.swift; path = Core/Wish/DataStores/WishesDataStoreProtocol.swift; sourceTree = "<group>"; };
+		2BE9EF3E1D7F89A000AF9AC2 /* LocalWishesDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalWishesDataStore.swift; path = Core/Wish/DataStores/LocalWishesDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */,
+				2BE9EF321D7F748A00AF9AC2 /* Core */,
 				2BE9EEFF1D7F709E00AF9AC2 /* ViewController.swift */,
 				2BE9EF011D7F709E00AF9AC2 /* Main.storyboard */,
 				2BE9EF071D7F709E00AF9AC2 /* Assets.xcassets */,
@@ -126,6 +137,42 @@
 				2BE9EF221D7F709E00AF9AC2 /* Info.plist */,
 			);
 			path = WishlistUITests;
+			sourceTree = "<group>";
+		};
+		2BE9EF321D7F748A00AF9AC2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2BE9EF331D7F74A100AF9AC2 /* Wish */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		2BE9EF331D7F74A100AF9AC2 /* Wish */ = {
+			isa = PBXGroup;
+			children = (
+				2BE9EF341D7F759B00AF9AC2 /* WishModel.swift */,
+				2BE9EF3A1D7F87E100AF9AC2 /* DataStores */,
+			);
+			name = Wish;
+			sourceTree = "<group>";
+		};
+		2BE9EF3A1D7F87E100AF9AC2 /* DataStores */ = {
+			isa = PBXGroup;
+			children = (
+				2BE9EF3D1D7F888C00AF9AC2 /* CoreDataModel */,
+				2BE9EF3B1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift */,
+				2BE9EF3E1D7F89A000AF9AC2 /* LocalWishesDataStore.swift */,
+			);
+			name = DataStores;
+			sourceTree = "<group>";
+		};
+		2BE9EF3D1D7F888C00AF9AC2 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BE9EF361D7F852500AF9AC2 /* Wish+CoreDataProperties.swift */,
+				2BE9EF371D7F852500AF9AC2 /* Wish.swift */,
+			);
+			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +243,7 @@
 				TargetAttributes = {
 					2BE9EEF91D7F709E00AF9AC2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ZM3F7HSPGX;
 					};
 					2BE9EF101D7F709E00AF9AC2 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -259,8 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BE9EF381D7F852500AF9AC2 /* Wish+CoreDataProperties.swift in Sources */,
 				2BE9EF061D7F709E00AF9AC2 /* Wishlist.xcdatamodeld in Sources */,
+				2BE9EF3F1D7F89A000AF9AC2 /* LocalWishesDataStore.swift in Sources */,
 				2BE9EF001D7F709E00AF9AC2 /* ViewController.swift in Sources */,
+				2BE9EF351D7F759B00AF9AC2 /* WishModel.swift in Sources */,
+				2BE9EF3C1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift in Sources */,
+				2BE9EF391D7F852500AF9AC2 /* Wish.swift in Sources */,
 				2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,10 +456,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Wishlist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.Wishlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -414,10 +470,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Wishlist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.Wishlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
