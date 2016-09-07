@@ -30,7 +30,7 @@ class WishModel {
         imageData = managed.imageData
         price = managed.price
         deadline = managed.deadline
-        level = managed.level
+        level = managed.level!.integerValue
     }
     
 }
