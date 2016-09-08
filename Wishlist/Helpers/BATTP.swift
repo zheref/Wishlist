@@ -24,7 +24,6 @@ class BATTP {
      */
     internal static func getImage(uri: String, by returner: DataReturner,
                                   orFailWith thrower: (String) -> Void) {
-        BatLog.shared.debug("Downloading image with url: \(uri)")
         let request: NSURLRequest = NSURLRequest(URL: NSURL(string: uri)!)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),

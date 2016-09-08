@@ -20,6 +20,7 @@ class WishesListViewController : UITableViewController, WishesListViewController
     
     var loadedWishes: [WishModel] = []
     weak var presenter: WishesListPresenterProtocol?
+    var lastChosenWish: WishModel?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,12 +29,9 @@ class WishesListViewController : UITableViewController, WishesListViewController
     }
     
     override func viewWillAppear(animated: Bool) {
-//        tableView.delegate = self
-//        tableView.dataSource = self
-        
         presenter?.getWishes({ [weak self] (wishes) in
             if let this = self {
-                this.loadedWishes.appendContentsOf(wishes)
+                this.loadedWishes = wishes
                 this.tableView.reloadData()
             } else {
                 BatLog.shared.severe("\(GenericError.WeakSelfNotAvailable)")
@@ -43,18 +41,22 @@ class WishesListViewController : UITableViewController, WishesListViewController
         super.viewWillAppear(animated)
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loadedWishes.count
     }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
@@ -66,12 +68,24 @@ class WishesListViewController : UITableViewController, WishesListViewController
         return cell
     }
     
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //close(withCategory: self._categories[indexPath.row])
+        lastChosenWish = loadedWishes[indexPath.row]
+        performSegueWithIdentifier(KSegues.ListToDetail, sender: self)
     }
+    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == KSegues.ListToDetail {
+            if var controller = segue.destinationViewController as? WishDetailViewControllerProtocol {
+                controller.model = lastChosenWish
+            }
+        }
     }
     
 }

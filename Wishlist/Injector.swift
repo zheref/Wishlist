@@ -19,11 +19,8 @@ class Injector {
     
     
     private lazy var wishesList: Module = {
-        
         let module = Module()
-        
         return module
-        
     }()
     
     
@@ -40,6 +37,17 @@ class Injector {
         wishesList.presenter = presenter
         
         return wishesList
+    }
+    
+    
+    private lazy var wishDetail: Module = {
+        let module = Module()
+        return module
+    }()
+    
+    
+    func getWishDetail(withView view: BatView) -> Module {
+        return wishDetail
     }
     
 }

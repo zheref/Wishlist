@@ -8,9 +8,11 @@
 
 import Foundation
 
+
 class KSegues {
-    
+    static let ListToDetail = "ListToDetail"
 }
+
 
 class KReuseIdentifiers {
     
