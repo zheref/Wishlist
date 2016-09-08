@@ -24,6 +24,21 @@ class WishTableViewCell : UITableViewCell {
         } else {
             descriptionLabel.text = ""
         }
+        
+        handleImageResourceUrl(model.imageResourceName)
+    }
+    
+    
+    private func handleImageResourceUrl(resourceName: String?) {
+        if let resource = resourceName {
+            if resource.hasPrefix("http://") {
+                BATTP.getImage(resource, by: { (data) in
+                    self.pictureLabel.image = UIImage(data: data)
+                }, orFailWith: { (str) in
+                    BatLog.shared.error(str)
+                })
+            }
+        }
     }
     
     

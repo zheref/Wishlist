@@ -20,28 +20,28 @@ class MockedWishesDataStore : WishesDataStoreProtocol
         
         models.append(WishModel(withName: "iPhone 7",
             longDescription: "Telefono inteligente de la generación 2017",
-            imageResourceName: "",
+            imageResourceName: "http://www.theinquirer.net/IMG/824/353824/iphone-7-plus-1-580x358.png?1473276015",
             price: 2500000,
             deadline: NSDate(timeIntervalSinceNow: 30000000),
             level: 5))
         
         models.append(WishModel(withName: "Apple Watch Series 2",
             longDescription: "Relój de mano inteligente de la generación 2016",
-            imageResourceName: "",
+            imageResourceName: "http://cdn2.itpro.co.uk/sites/itpro/files/styles/insert_main_image/public/2016/09/2up-stainless-black-sport-black-select.jpg?itok=27hGrOwj",
             price: 1800000,
             deadline: NSDate(timeIntervalSinceNow: 15000000),
             level: 4))
         
         models.append(WishModel(withName: "Renault Sandero Stepway",
             longDescription: "Minicamioneta perfecta para mí",
-            imageResourceName: "",
+            imageResourceName: "http://bright-cars.com/uploads/renault/renault-sandero-stepway/renault-sandero-stepway-15.jpg",
             price: 47000000,
             deadline: NSDate(timeIntervalSinceNow: 62000000),
             level: 3))
         
         models.append(WishModel(withName: "Motocicleta BMW G650",
             longDescription: "El cilindraje y diseño de una moto que siempre he querido",
-            imageResourceName: "",
+            imageResourceName: "http://www.advpulse.com/wp-content/uploads/2014/03/BMW-G650GS.jpg",
             price: 38000000,
             deadline: NSDate(timeIntervalSinceNow: 97000000),
             level: 2))
