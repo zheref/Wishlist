@@ -28,9 +28,17 @@ class WishDetailViewController : UIViewController, WishDetailViewControllerProto
     
     override func viewWillAppear(animated: Bool) {
         if let model = model {
+            let currentLocale = NSLocale.autoupdatingCurrentLocale()
+            
             nameLabel.text = model.name
             descriptionLabel.text = model.longDescription == nil ? "No description available." : model.longDescription!
-            priceLabel.text = model.price == nil ? "$???" : "$\(model.price!.descriptionWithLocale(NSLocale.autoupdatingCurrentLocale()))"
+            priceLabel.text = model.price == nil ? "$???" : "$\(model.price!.descriptionWithLocale(currentLocale))"
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .LongStyle
+            
+            deadlineLabel.text = model.deadline == nil ? "No deadline." : dateFormatter.stringFromDate(model.deadline!)
+            
             handleImageResourceUrl(model.imageResourceName)
         }
         
