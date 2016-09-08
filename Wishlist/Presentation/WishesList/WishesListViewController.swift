@@ -28,7 +28,20 @@ class WishesListViewController : UITableViewController, WishesListViewController
         presenter = module.presenter as? WishesListPresenterProtocol
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let width = view.bounds.size.width
+        let searchBar = UISearchBar(frame: CGRectMake(0, 0, width, 44))
+        searchBar.searchBarStyle = .Minimal
+        tableView.tableHeaderView = searchBar
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
+        setupTableViewSearchOffset()
+        
         presenter?.getWishes({ [weak self] (wishes) in
             if let this = self {
                 this.loadedWishes = wishes
@@ -86,6 +99,13 @@ class WishesListViewController : UITableViewController, WishesListViewController
                 controller.model = lastChosenWish
             }
         }
+    }
+    
+    
+    private func setupTableViewSearchOffset() {
+        var contentOffset = tableView.contentOffset
+        contentOffset.y += CGRectGetHeight(tableView.tableHeaderView!.frame)
+        tableView.contentOffset = contentOffset
     }
     
 }
