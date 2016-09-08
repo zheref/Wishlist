@@ -35,6 +35,7 @@ class WishesListViewController : UITableViewController, WishesListViewController
         let width = view.bounds.size.width
         let searchBar = UISearchBar(frame: CGRectMake(0, 0, width, 44))
         searchBar.searchBarStyle = .Minimal
+        searchBar.delegate = self
         tableView.tableHeaderView = searchBar
     }
     
@@ -106,6 +107,30 @@ class WishesListViewController : UITableViewController, WishesListViewController
         var contentOffset = tableView.contentOffset
         contentOffset.y += CGRectGetHeight(tableView.tableHeaderView!.frame)
         tableView.contentOffset = contentOffset
+    }
+    
+    
+    private func search(withPrefix prefix: String) {
+        loadedWishes = loadedWishes.filter({ (wish) -> Bool in
+            return wish.name.hasPrefix(prefix)
+        })
+        
+        tableView.reloadData()
+    }
+    
+}
+
+
+extension WishesListViewController : UISearchBarDelegate {
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        BatLog.shared.verbose(searchText)
+        search(withPrefix: searchText)
+    }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        BatLog.shared.verbose("Cancel tapped")
     }
     
 }
