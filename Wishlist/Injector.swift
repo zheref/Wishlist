@@ -53,11 +53,11 @@ class Module {
 }
 
 
-protocol BatView {
-    
+protocol BatView : class {
+    func show(error: ErrorType)
 }
 
 
-protocol BatPresenter {
+protocol BatPresenter : class {
     
 }

@@ -29,6 +29,8 @@ class WishesDataManager : WishesDataManagerProtocol {
             
             mockedStore.retrieveAll(byReturner: { (models) in
                 collectedModels.appendContentsOf(models)
+                
+                returner(models)
             }, orFailWith: { (error) in
                 thrower(error)
             })

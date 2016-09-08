@@ -17,6 +17,8 @@
 		2B833F951D818C8200D8DC3F /* WishesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B833F941D818C8200D8DC3F /* WishesListPresenter.swift */; };
 		2B833F971D818E5500D8DC3F /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B833F961D818E5500D8DC3F /* Injector.swift */; };
 		2B833F991D81918400D8DC3F /* WishesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B833F981D81918400D8DC3F /* WishesDataManager.swift */; };
+		2BD0D19C1D81C15E008FE30A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0D19B1D81C15E008FE30A /* Errors.swift */; };
+		2BD0D19E1D81C19A008FE30A /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0D19D1D81C19A008FE30A /* UIKit+Extensions.swift */; };
 		2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */; };
 		2BE9EF031D7F709E00AF9AC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE9EF011D7F709E00AF9AC2 /* Main.storyboard */; };
 		2BE9EF061D7F709E00AF9AC2 /* Wishlist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9EF041D7F709E00AF9AC2 /* Wishlist.xcdatamodeld */; };
@@ -59,6 +61,8 @@
 		2B833F941D818C8200D8DC3F /* WishesListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishesListPresenter.swift; path = Presentation/WishesList/WishesListPresenter.swift; sourceTree = "<group>"; };
 		2B833F961D818E5500D8DC3F /* Injector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		2B833F981D81918400D8DC3F /* WishesDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishesDataManager.swift; path = Core/Wish/WishesDataManager.swift; sourceTree = "<group>"; };
+		2BD0D19B1D81C15E008FE30A /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		2BD0D19D1D81C19A008FE30A /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		2BE9EEFA1D7F709E00AF9AC2 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE9EEFD1D7F709E00AF9AC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BE9EF021D7F709E00AF9AC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				2BE9EF041D7F709E00AF9AC2 /* Wishlist.xcdatamodeld */,
 				2B833F921D813DA200D8DC3F /* Konstants.swift */,
 				2B833F961D818E5500D8DC3F /* Injector.swift */,
+				2BD0D19B1D81C15E008FE30A /* Errors.swift */,
+				2BD0D19D1D81C19A008FE30A /* UIKit+Extensions.swift */,
 			);
 			path = Wishlist;
 			sourceTree = "<group>";
@@ -294,7 +300,7 @@
 				TargetAttributes = {
 					2BE9EEF91D7F709E00AF9AC2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = ZM3F7HSPGX;
+						DevelopmentTeam = AQUE4FE98B;
 					};
 					2BE9EF101D7F709E00AF9AC2 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -370,10 +376,12 @@
 				2BE9EF3C1D7F881700AF9AC2 /* WishesDataStoreProtocol.swift in Sources */,
 				2BE9EF391D7F852500AF9AC2 /* Wish.swift in Sources */,
 				2B06CB031D805E7A0024ADF8 /* Batground.swift in Sources */,
+				2BD0D19E1D81C19A008FE30A /* UIKit+Extensions.swift in Sources */,
 				2BE9EEFE1D7F709E00AF9AC2 /* AppDelegate.swift in Sources */,
 				2B833F911D813A0500D8DC3F /* WishTableViewCell.swift in Sources */,
 				2B06CB071D807ACD0024ADF8 /* MockedWishesDataStore.swift in Sources */,
 				2B833F8F1D81339300D8DC3F /* WishesListViewController.swift in Sources */,
+				2BD0D19C1D81C15E008FE30A /* Errors.swift in Sources */,
 				2B833F931D813DA200D8DC3F /* Konstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,7 +528,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Wishlist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.Wishlist;
+				PRODUCT_BUNDLE_IDENTIFIER = info.zheref.Wishlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -534,7 +542,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Wishlist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.Wishlist;
+				PRODUCT_BUNDLE_IDENTIFIER = info.zheref.Wishlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
