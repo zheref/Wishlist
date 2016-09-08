@@ -43,4 +43,6 @@ class WishModel {
         level = managed.level!.integerValue
     }
     
+    
+    
 }

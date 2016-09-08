@@ -39,6 +39,13 @@ class MockedWishesDataStore : WishesDataStoreProtocol
             deadline: NSDate(timeIntervalSinceNow: 62000000),
             level: 3))
         
+        models.append(WishModel(withName: "Motocicleta BMW G650",
+            longDescription: "El cilindraje y diseño de una moto que siempre he querido",
+            imageResourceName: "",
+            price: 38000000,
+            deadline: NSDate(timeIntervalSinceNow: 97000000),
+            level: 2))
+        
         return models
         
     }
