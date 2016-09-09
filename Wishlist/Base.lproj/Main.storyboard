@@ -99,7 +99,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Wishlist" id="LgV-Vz-Mnw">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="Vmn-F9-0h0"/>
+                        <barButtonItem key="leftBarButtonItem" image="sort" id="Vmn-F9-0h0">
+                            <connections>
+                                <action selector="onSortButtonActioned:" destination="bf9-vr-0Oh" id="99m-33-Gmv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hLS-8r-tb9"/>
                     </navigationItem>
                     <connections>
@@ -190,4 +194,7 @@
             <point key="canvasLocation" x="1180" y="105"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sort" width="25" height="25"/>
+    </resources>
 </document>

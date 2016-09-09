@@ -18,10 +18,16 @@ protocol WishesListViewControllerProtocol : BatView {
 
 class WishesListViewController : UITableViewController, WishesListViewControllerProtocol {
     
+    enum SortingMode {
+        case Ascendent
+        case Descendent
+    }
+    
     var loadedWishes: [WishModel] = []
     var displayingWishes: [WishModel] = []
     weak var presenter: WishesListPresenterProtocol?
     var lastChosenWish: WishModel?
+    var lastSortingMode: SortingMode?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -124,6 +130,39 @@ class WishesListViewController : UITableViewController, WishesListViewController
         
         tableView.reloadData()
     }
+    
+    
+    private func toggleSort() {
+        var sortingMode: SortingMode = .Ascendent
+        
+        if let lastSortingMode = lastSortingMode {
+            switch lastSortingMode {
+            case .Ascendent:
+                sortingMode = .Descendent
+            case .Descendent:
+                sortingMode = .Ascendent
+            }
+        }
+        
+        displayingWishes = displayingWishes.sort({ (model1, model2) -> Bool in
+            switch sortingMode {
+            case .Ascendent:
+                return model1.name.lowercaseString < model2.name.lowercaseString
+            case .Descendent:
+                return model1.name.lowercaseString > model2.name.lowercaseString
+            }
+        })
+        
+        tableView.reloadData()
+        
+        lastSortingMode = sortingMode
+    }
+    
+    
+    @IBAction func onSortButtonActioned(sender: UIBarButtonItem) {
+        toggleSort()
+    }
+    
     
 }
 
