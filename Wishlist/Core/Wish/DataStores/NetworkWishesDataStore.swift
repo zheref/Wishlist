@@ -9,16 +9,25 @@
 import Foundation
 import Alamofire
 
-class NetworkWishesDataStore : WishesDataStoreProtocol
-{
+
+class NetworkWishesDataStore : WishesDataStoreProtocol {
     
     // MARK: - INSTANCE MEMBERS
     
     /**
-     *
+     * Persist model through REST web service
      */
     func insert(model: WishModel, andThenDo callback: Callback, orFailWith thrower: ErrorThrower) {
+        let urlString = KUris.Host + "/post"
         
+        Alamofire.request(.POST, urlString, parameters: ["wish": model.dictVersion]).responseJSON { response in
+            switch response.result {
+            case .Success:
+                callback()
+            case .Failure(let error):
+                thrower(error)
+            }
+        }
     }
     
     
@@ -37,18 +46,27 @@ class NetworkWishesDataStore : WishesDataStoreProtocol
             case .Failure(let error):
                 thrower(error)
             }
-            
-            
         }
     }
     
     
     /**
-     *
+     * Retrieve all dicts filted by prefixing name
      */
     func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner,
                                   orFailWith thrower: ErrorThrower) {
+        let urlString = KUris.Host + "/get/\(prefix)"
         
+        Alamofire.request(.GET, urlString).responseJSON { response in
+            switch response.result {
+            case .Success:
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+            case .Failure(let error):
+                thrower(error)
+            }
+        }
     }
     
     

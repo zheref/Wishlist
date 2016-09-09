@@ -10,6 +10,12 @@ import Foundation
 
 class WishModel {
     
+    private static let KName = "name"
+    private static let KDescription = "description"
+    private static let KResourceName = "resourceName"
+    private static let KPrice = "price"
+    private static let KLevel = "level"
+    
     var name: String
     var longDescription: String?
     var imageResourceName: String?
@@ -43,5 +49,16 @@ class WishModel {
         level = managed.level!.integerValue
     }
     
+    var dictVersion: [String: AnyObject] {
+        var dict = [String: AnyObject]()
+        
+        dict[WishModel.KName] = name
+        dict[WishModel.KDescription] = longDescription != nil ? longDescription : ""
+        dict[WishModel.KResourceName] = imageResourceName != nil ? imageResourceName : ""
+        dict[WishModel.KPrice] = price != nil ? price : ""
+        dict[WishModel.KLevel] = level
+        
+        return dict
+    }
     
 }
