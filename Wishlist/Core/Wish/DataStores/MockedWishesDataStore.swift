@@ -50,7 +50,13 @@ class MockedWishesDataStore : WishesDataStoreProtocol
                 level: 2)
         ]
         
-        return models
+        var groupedModels: [WishModel] = []
+        
+        for _ in 1...3 {
+            groupedModels.appendContentsOf(models)
+        }
+        
+        return groupedModels
     }
     
     

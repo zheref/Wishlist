@@ -104,7 +104,6 @@
                                 <action selector="onSortButtonActioned:" destination="bf9-vr-0Oh" id="99m-33-Gmv"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hLS-8r-tb9"/>
                     </navigationItem>
                     <connections>
                         <segue destination="O7q-kL-49n" kind="push" identifier="ListToDetail" id="COr-S5-AyC"/>
