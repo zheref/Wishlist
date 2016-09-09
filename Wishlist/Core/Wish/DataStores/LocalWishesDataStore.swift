@@ -89,11 +89,16 @@ class LocalWishesDataStore : WishesDataStoreProtocol
     
     
     /**
-     *
+     * Retrieve records filtered by prefix and sorted as specified from core data DB
      */
     func retrieve(byNamePrefixing prefix: String, sorted sortMode: SortingMode,
                                   byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
         let request = NSFetchRequest()
+        
+        request.predicate = NSPredicate(format: "\(WishModel.KName) like \"%@*\"", prefix)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: WishModel.KName, ascending: sortMode == SortingMode.Ascendent)]
+        
         let context = AppDelegate.sharedInstance.managedObjectContext
         
         request.entity = NSEntityDescription.entityForName(Wish.modelName,

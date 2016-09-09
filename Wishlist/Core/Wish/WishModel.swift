@@ -10,11 +10,11 @@ import Foundation
 
 class WishModel {
     
-    private static let KName = "name"
-    private static let KDescription = "description"
-    private static let KResourceName = "resourceName"
-    private static let KPrice = "price"
-    private static let KLevel = "level"
+    static let KName = "name"
+    static let KDescription = "description"
+    static let KResourceName = "resourceName"
+    static let KPrice = "price"
+    static let KLevel = "level"
     
     var name: String
     var longDescription: String?
