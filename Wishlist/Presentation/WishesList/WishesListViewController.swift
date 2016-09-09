@@ -51,6 +51,8 @@ class WishesListViewController : UITableViewController, WishesListViewController
     
     
     override func viewWillAppear(animated: Bool) {
+        setupNavigationBar()
+        
         presenter?.getWishes({ [weak self] (wishes) in
             if let this = self {
                 this.loadedWishes = wishes
@@ -116,6 +118,15 @@ class WishesListViewController : UITableViewController, WishesListViewController
         var contentOffset = tableView.contentOffset
         contentOffset.y += CGRectGetHeight(tableView.tableHeaderView!.frame)
         tableView.contentOffset = contentOffset
+    }
+    
+    
+    private func setupNavigationBar() {
+        let navBar = self.navigationController?.navigationBar
+        let image = UIImage(named: "logo")
+        navBar?.setBackgroundImage(image, forBarMetrics: .Default)
+        navBar?.translucent = false
+        title = ""
     }
     
     
