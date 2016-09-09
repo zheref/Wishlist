@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 typealias Callback = () -> Void
 typealias ErrorThrower = (ErrorType) -> Void
 typealias WishesReturner = ([WishModel]) -> Void

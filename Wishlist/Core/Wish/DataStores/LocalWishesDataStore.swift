@@ -9,15 +9,21 @@
 import UIKit
 import CoreData
 
-
 class LocalWishesDataStore : WishesDataStoreProtocol
 {
     
-    func insert(model: WishModel, andThenDo callback: Callback, orFailWith thrower: ErrorThrower)
-    {
+    // MARK: - INSTANCE MEMBERS
+    
+    
+    /**
+     * Insert model as record into core data DB
+     */
+    func insert(model: WishModel, andThenDo callback: Callback, orFailWith thrower: ErrorThrower) {
         let context = AppDelegate.sharedInstance.managedObjectContext
         
-        if let entity = NSEntityDescription.entityForName(Wish.modelName, inManagedObjectContext: context) {
+        if let entity = NSEntityDescription.entityForName(Wish.modelName,
+                                                          inManagedObjectContext: context) {
+            
             let wish = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
             
             wish.setValue(model.name, forKey: "name")
@@ -45,10 +51,12 @@ class LocalWishesDataStore : WishesDataStoreProtocol
         } else {
             thrower(WishesDataStoreError.CouldNotCreateManagedEntityFor(modelName: Wish.modelName))
         }
-        
     }
     
     
+    /**
+     * Retrieve al records as model from core data DB
+     */
     func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
         let request = NSFetchRequest()
         let context = AppDelegate.sharedInstance.managedObjectContext
