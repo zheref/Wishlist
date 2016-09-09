@@ -23,7 +23,7 @@ class NetworkWishesDataStore : WishesDataStoreProtocol
     
     
     /**
-     *
+     * Retrieve all the dicts from the REST web service
      */
     func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
         let urlString = KUris.Host + "/get"

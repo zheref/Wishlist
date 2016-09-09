@@ -33,7 +33,9 @@ class WishTableViewCell : UITableViewCell {
         if let resource = resourceName {
             if resource.hasPrefix("http://") {
                 BATTP.getImage(resource, by: { (data) in
-                    self.pictureLabel.image = UIImage(data: data)
+                    BatUI.run({
+                        self.pictureLabel.image = UIImage(data: data)
+                    })
                 }, orFailWith: { (str) in
                     BatLog.shared.error(str)
                 })

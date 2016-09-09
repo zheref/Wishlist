@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 typealias DataReturner = (NSData) -> Void
 
 
@@ -24,21 +25,22 @@ class BATTP {
      */
     internal static func getImage(uri: String, by returner: DataReturner,
                                   orFailWith thrower: (String) -> Void) {
+        
+        
         let request: NSURLRequest = NSURLRequest(URL: NSURL(string: uri)!)
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
-                                                completionHandler: {
-                                                    (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                                                    
-                                                    if let error = error {
-                                                        thrower(error.localizedDescription)
-                                                    } else if let data = data {
-                                                        returner(data)
-                                                    } else {
-                                                        thrower("\(BATTPError.NoDataAvailableInResponse)")
-                                                    }
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            if let error = error {
+                thrower(error.localizedDescription)
+            } else if let data = data {
+                returner(data)
+            } else {
+                thrower("\(BATTPError.NoDataAvailableInResponse)")
             }
-        );
+        }
+        
+        task.resume()
+        
     }
     
 }
