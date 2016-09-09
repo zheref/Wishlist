@@ -55,7 +55,7 @@ class LocalWishesDataStore : WishesDataStoreProtocol
     
     
     /**
-     * Retrieve al records as model from core data DB
+     * Retrieve all records as model from core data DB
      */
     func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
         let request = NSFetchRequest()
@@ -85,6 +85,15 @@ class LocalWishesDataStore : WishesDataStoreProtocol
                 thrower(error)
             }
         }
+    }
+    
+    
+    /**
+     *
+     */
+    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner,
+                                  orFailWith thrower: ErrorThrower) {
+        
     }
     
     

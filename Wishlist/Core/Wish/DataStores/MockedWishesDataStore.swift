@@ -88,4 +88,13 @@ class MockedWishesDataStore : WishesDataStoreProtocol
     }
     
     
+    /**
+     *
+     */
+    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner,
+                                  orFailWith thrower: ErrorThrower) {
+        
+    }
+    
+    
 }

@@ -29,4 +29,6 @@ protocol WishesDataStoreProtocol {
     
     func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
     
+    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
+    
 }

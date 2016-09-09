@@ -22,3 +22,7 @@ class KReuseIdentifiers {
 class KCopies {
     static let SearchPlaceholder = "Type here to filter"
 }
+
+class KUris {
+    static let Host = "http://httpbin.org"
+}
