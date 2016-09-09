@@ -13,7 +13,7 @@ protocol WishesListPresenterProtocol : BatPresenter {
     
     init(withView view: WishesListViewControllerProtocol, andRepository dataManager: WishesDataManagerProtocol)
     
-    func getWishes(returner: ([WishModel]) -> Void)
+    func getWishes(prefixing prefix: String, sorting: SortingMode, returner: ([WishModel]) -> Void)
     
 }
 
@@ -23,6 +23,7 @@ class WishesListPresenter : WishesListPresenterProtocol {
     let view: WishesListViewControllerProtocol
     let repository: WishesDataManagerProtocol
     
+    
     required init(withView view: WishesListViewControllerProtocol,
                   andRepository dataManager: WishesDataManagerProtocol) {
         self.view = view
@@ -30,8 +31,8 @@ class WishesListPresenter : WishesListPresenterProtocol {
     }
     
     
-    func getWishes(returner: ([WishModel]) -> Void) {
-        repository.getWishes({ (models) in
+    func getWishes(prefixing prefix: String, sorting: SortingMode, returner: ([WishModel]) -> Void) {
+        repository.getWishes(withPrefixingName: prefix, sorting: sorting, returner: { (models) in
             returner(models)
         }) { [unowned view] (error) in
             view.show(error)

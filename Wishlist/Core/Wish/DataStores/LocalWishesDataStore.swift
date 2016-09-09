@@ -91,9 +91,35 @@ class LocalWishesDataStore : WishesDataStoreProtocol
     /**
      *
      */
-    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner,
-                                  orFailWith thrower: ErrorThrower) {
+    func retrieve(byNamePrefixing prefix: String, sorted sortMode: SortingMode,
+                                  byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
+        let request = NSFetchRequest()
+        let context = AppDelegate.sharedInstance.managedObjectContext
         
+        request.entity = NSEntityDescription.entityForName(Wish.modelName,
+                                                           inManagedObjectContext: context)
+        
+        request.includesPropertyValues = true
+        
+        Batground.run {
+            do {
+                if let results = try context.executeFetchRequest(request) as? [Wish] {
+                    let models = results.map({ (wish) -> WishModel in
+                        return WishModel(withManaged: wish)
+                    })
+                    
+                    BatUI.run({
+                        returner(models)
+                    })
+                } else {
+                    BatUI.run({
+                        thrower(WishesDataStoreError.NotPossibleToCastManaged)
+                    })
+                }
+            } catch {
+                thrower(error)
+            }
+        }
     }
     
     

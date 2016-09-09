@@ -1,5 +1,5 @@
 //
-//  Wish.swift
+//  WishModel.swift
 //  Wishlist
 //
 //  Created by Sergio Daniel Lozano on 9/6/16.

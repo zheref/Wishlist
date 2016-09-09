@@ -89,11 +89,36 @@ class MockedWishesDataStore : WishesDataStoreProtocol
     
     
     /**
-     *
+     * Retrieve models matching prefix and sorted as specified from memcache
      */
-    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner,
-                                  orFailWith thrower: ErrorThrower) {
+    func retrieve(byNamePrefixing prefix: String, sorted sortMode: SortingMode,
+                                  byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower) {
+        if !Memcache.shared.hasKey(MockedWishesDataStore.WishesKey) {
+            Memcache.shared.addOrUpdateKey(MockedWishesDataStore.WishesKey, withData: mockedWishes)
+        }
         
+        if let models = Memcache.shared[MockedWishesDataStore.WishesKey] as? [WishModel] {
+            var filteredModels: [WishModel] = models
+            
+            if !prefix.isEmpty {
+                filteredModels = models.filter({ (wishModel) -> Bool in
+                    wishModel.name.lowercaseString.hasPrefix(prefix.lowercaseString)
+                })
+            }
+            
+            let sortedModels = filteredModels.sort({ (model1, model2) -> Bool in
+                switch sortMode {
+                case .Ascendent:
+                    return model1.name.lowercaseString < model2.name.lowercaseString
+                case .Descendent:
+                    return model1.name.lowercaseString > model2.name.lowercaseString
+                }
+            })
+            
+            returner(sortedModels)
+        } else {
+            thrower(WishesDataStoreError.NotPossibleToCast)
+        }
     }
     
     

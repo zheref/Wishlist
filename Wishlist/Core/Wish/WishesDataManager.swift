@@ -12,6 +12,7 @@ import Foundation
 protocol WishesDataManagerProtocol {
     
     func getWishes(returner: ([WishModel]) -> Void, orFailWith thrower: (ErrorType) -> Void)
+    func getWishes(withPrefixingName prefix: String, sorting: SortingMode, returner: ([WishModel]) -> Void, orFailWith thrower: (ErrorType) -> Void)
     
 }
 
@@ -39,6 +40,28 @@ class WishesDataManager : WishesDataManagerProtocol {
             thrower(error)
         }
         
+    }
+    
+    
+    func getWishes(withPrefixingName prefix: String, sorting: SortingMode, returner: ([WishModel]) -> Void, orFailWith thrower: (ErrorType) -> Void) {
+        var collectedModels: [WishModel] = []
+        
+        let localStore = LocalWishesDataStore()
+        let mockedStore = MockedWishesDataStore()
+        
+        localStore.retrieve(byNamePrefixing: prefix, sorted: sorting, byReturner: { (models) in
+            collectedModels.appendContentsOf(models)
+            
+            mockedStore.retrieve(byNamePrefixing: prefix, sorted: sorting, byReturner: { (models) in
+                collectedModels.appendContentsOf(models)
+                
+                returner(models)
+            }, orFailWith: { (error) in
+                    thrower(error)
+            })
+        }) { (error) in
+            thrower(error)
+        }
     }
     
 }

@@ -23,12 +23,19 @@ enum WishesDataStoreError : ErrorType {
 }
 
 
+enum SortingMode {
+    case Ascendent
+    case Descendent
+}
+
+
 protocol WishesDataStoreProtocol {
     
     func insert(model: WishModel, andThenDo callback: Callback, orFailWith thrower: ErrorThrower)
     
     func retrieveAll(byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
     
-    func retrieve(byNamePrefixing prefix: String, byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
+    func retrieve(byNamePrefixing prefix: String, sorted sortMode: SortingMode,
+                                  byReturner returner: WishesReturner, orFailWith thrower: ErrorThrower)
     
 }
