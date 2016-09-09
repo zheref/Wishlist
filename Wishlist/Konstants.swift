@@ -15,7 +15,10 @@ class KSegues {
 
 
 class KReuseIdentifiers {
-    
     static let WishCell = "WishCell"
-    
+}
+
+
+class KCopies {
+    static let SearchPlaceholder = "Type here to filter"
 }

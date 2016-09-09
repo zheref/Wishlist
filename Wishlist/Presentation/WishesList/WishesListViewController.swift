@@ -18,10 +18,14 @@ protocol WishesListViewControllerProtocol : BatView {
 
 class WishesListViewController : UITableViewController, WishesListViewControllerProtocol {
     
+    // MARK: - NESTED TYPES
+    
     enum SortingMode {
         case Ascendent
         case Descendent
     }
+    
+    // MARK: - INSTANCE MEMBERS
     
     var loadedWishes: [WishModel] = []
     var displayingWishes: [WishModel] = []
@@ -29,81 +33,31 @@ class WishesListViewController : UITableViewController, WishesListViewController
     var lastChosenWish: WishModel?
     var lastSortingMode: SortingMode?
     
+    // MARK: - INITIALIZERS
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let module = Injector.shared.getWishesList(withView: self)
         presenter = module.presenter as? WishesListPresenterProtocol
     }
     
+    // MARK: - LIFECYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let width = view.bounds.size.width
-        let searchBar = UISearchBar(frame: CGRectMake(0, 0, width, 44))
-        searchBar.searchBarStyle = .Minimal
-        searchBar.delegate = self
-        searchBar.placeholder = "Type here to filter"
-        tableView.tableHeaderView = searchBar
-        
+        setupSearchBar()
         setupTableViewSearchOffset()
     }
     
     
     override func viewWillAppear(animated: Bool) {
         setupNavigationBar()
-        
-        presenter?.getWishes({ [weak self] (wishes) in
-            if let this = self {
-                this.loadedWishes = wishes
-                this.displayingWishes = this.loadedWishes
-                this.tableView.reloadData()
-            } else {
-                BatLog.shared.severe("\(GenericError.WeakSelfNotAvailable)")
-            }
-        })
+        loadData()
         
         super.viewWillAppear(animated)
     }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayingWishes.count
-    }
-    
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-        -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCellWithIdentifier(KReuseIdentifiers.WishCell,
-                                                               forIndexPath: indexPath) as! WishTableViewCell
-        cell.apply(displayingWishes[indexPath.row])
-        
-        return cell
-    }
-    
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        lastChosenWish = displayingWishes[indexPath.row]
-        performSegueWithIdentifier(KSegues.ListToDetail, sender: self)
-    }
-    
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
-    }
-    
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == KSegues.ListToDetail {
@@ -111,6 +65,30 @@ class WishesListViewController : UITableViewController, WishesListViewController
                 controller.model = lastChosenWish
             }
         }
+    }
+    
+    
+    private func loadData() {
+        presenter?.getWishes({ [weak self] (wishes) in
+            guard let this = self else {
+                BatLog.shared.severe("\(GenericError.WeakSelfNotAvailable)")
+                return
+            }
+            
+            this.loadedWishes = wishes
+            this.displayingWishes = this.loadedWishes
+            this.tableView.reloadData()
+        })
+    }
+    
+    
+    private func setupSearchBar() {
+        let width = view.bounds.size.width
+        let searchBar = UISearchBar(frame: CGRectMake(0, 0, width, 44))
+        searchBar.searchBarStyle = .Minimal
+        searchBar.delegate = self
+        searchBar.placeholder = KCopies.SearchPlaceholder
+        tableView.tableHeaderView = searchBar
     }
     
     
@@ -169,6 +147,7 @@ class WishesListViewController : UITableViewController, WishesListViewController
         lastSortingMode = sortingMode
     }
     
+    // MARK: - ACTIONS
     
     @IBAction func onSortButtonActioned(sender: UIBarButtonItem) {
         toggleSort()
@@ -177,6 +156,44 @@ class WishesListViewController : UITableViewController, WishesListViewController
     
 }
 
+// MARK: - UITABLEVIEW DATASOURCE AND DELEGATE IMPLEMENTATION
+
+extension WishesListViewController {
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayingWishes.count
+    }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier(KReuseIdentifiers.WishCell,
+                                                               forIndexPath: indexPath) as! WishTableViewCell
+        cell.apply(displayingWishes[indexPath.row])
+        
+        return cell
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        lastChosenWish = displayingWishes[indexPath.row]
+        performSegueWithIdentifier(KSegues.ListToDetail, sender: self)
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
+    
+}
+
+// MARK: - UISEARCHBAR DELEGATE IMPLEMENTATION
 
 extension WishesListViewController : UISearchBarDelegate {
     
