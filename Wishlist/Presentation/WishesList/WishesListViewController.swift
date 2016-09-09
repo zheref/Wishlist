@@ -19,6 +19,7 @@ protocol WishesListViewControllerProtocol : BatView {
 class WishesListViewController : UITableViewController, WishesListViewControllerProtocol {
     
     var loadedWishes: [WishModel] = []
+    var displayingWishes: [WishModel] = []
     weak var presenter: WishesListPresenterProtocol?
     var lastChosenWish: WishModel?
     
@@ -36,16 +37,18 @@ class WishesListViewController : UITableViewController, WishesListViewController
         let searchBar = UISearchBar(frame: CGRectMake(0, 0, width, 44))
         searchBar.searchBarStyle = .Minimal
         searchBar.delegate = self
+        searchBar.placeholder = "Type here to filter"
         tableView.tableHeaderView = searchBar
+        
+        setupTableViewSearchOffset()
     }
     
     
     override func viewWillAppear(animated: Bool) {
-        setupTableViewSearchOffset()
-        
         presenter?.getWishes({ [weak self] (wishes) in
             if let this = self {
                 this.loadedWishes = wishes
+                this.displayingWishes = this.loadedWishes
                 this.tableView.reloadData()
             } else {
                 BatLog.shared.severe("\(GenericError.WeakSelfNotAvailable)")
@@ -68,7 +71,7 @@ class WishesListViewController : UITableViewController, WishesListViewController
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return loadedWishes.count
+        return displayingWishes.count
     }
     
     
@@ -77,14 +80,14 @@ class WishesListViewController : UITableViewController, WishesListViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier(KReuseIdentifiers.WishCell,
                                                                forIndexPath: indexPath) as! WishTableViewCell
-        cell.apply(loadedWishes[indexPath.row])
+        cell.apply(displayingWishes[indexPath.row])
         
         return cell
     }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        lastChosenWish = loadedWishes[indexPath.row]
+        lastChosenWish = displayingWishes[indexPath.row]
         performSegueWithIdentifier(KSegues.ListToDetail, sender: self)
     }
     
@@ -111,9 +114,13 @@ class WishesListViewController : UITableViewController, WishesListViewController
     
     
     private func search(withPrefix prefix: String) {
-        loadedWishes = loadedWishes.filter({ (wish) -> Bool in
-            return wish.name.hasPrefix(prefix)
-        })
+        if prefix.isEmpty {
+            displayingWishes = loadedWishes
+        } else {
+            displayingWishes = loadedWishes.filter({ (wishModel) -> Bool in
+                wishModel.name.lowercaseString.hasPrefix(prefix.lowercaseString)
+            })
+        }
         
         tableView.reloadData()
     }
